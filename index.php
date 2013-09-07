@@ -23,7 +23,7 @@
 				$content = array();
 				$content[] = '<div class="entry">';
 				$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';
-				$content[] = '<span class="entry-shaarli">' . $row->feed . '</span> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
+				$content[] = '<span class="entry-shaarli">' . $row->feed->title . '</span> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
 				$content[] = '<div class="entry-content">' . $row->content . '</div>';
 				$content[] = '</div>';
 

@@ -1,20 +1,24 @@
 <?php
 
 define('LOCAL_API', false);
-define('SHAARLI_API_URL', 'http://nexen.mkdir.fr/shaarli-river/api/');
+define('SHAARLI_API_URL', 'http://nexen.mkdir.fr/shaarli-api/');
 
 class ShaarliApiClient {
 
-	protected function callApi( $filename ) {
+	/**
+	 * Call API
+	 * @param string action
+	 */
+	protected function callApi( $action ) {
 
 		if( LOCAL_API ) {
 
-			$filename = __DIR__ . '/../api/' . $filename . '.json';
+			$action = __DIR__ . '/../api/' . $action;
 
 		}
 		else {
 
-			$filename = SHAARLI_API_URL . $filename . '.json';
+			$action = SHAARLI_API_URL . $action;
 		}
 
 		$options = array(
@@ -27,7 +31,7 @@ class ShaarliApiClient {
 
 		$context = stream_context_create($options);
 
-		$content = @file_get_contents($filename, false, $context);
+		$content = @file_get_contents($action, false, $context);
 
 		if( !empty($content) ) {
 
@@ -45,10 +49,10 @@ class ShaarliApiClient {
 	}
 
 	public static function getTopToday() {
-		return self::callApi('top_today');
+		return self::callApi('top?interval=48h');
 	}
 
 	public static function getTopMonth() {
-		return self::callApi('top_month');
+		return self::callApi('top?interval=1month');
 	}
 }
