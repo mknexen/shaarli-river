@@ -3,14 +3,20 @@
 require_once __DIR__ . '/includes/ShaarliApiClient.php';
 
 $feeds = ShaarliApiClient::callApi('feeds');
+if( empty($feeds) ) die('API return empty content');
+
 shuffle($feeds);
 
-include __DIR__ . '/includes/header.php';
-include __DIR__ . '/includes/menu.php';
+include __DIR__ . '/includes/header.php'; ?>
 
-?>
+<div style="float:right;">
+	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/feeds?pretty=1">JSON</a>
+	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/feeds?format=opml">OPML</a>
+</div>
 
-<h3>The Network</h3>
+<?php include __DIR__ . '/includes/menu.php'; ?>
+
+<h3>The Network (<?php echo count($feeds); ?> peoples)</h3>
 
 <?php foreach( $feeds as $feed ): ?>
 <?php if( !empty($feed->link) && !empty($feed->title) ): ?>
