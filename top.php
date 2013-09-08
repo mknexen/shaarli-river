@@ -2,18 +2,28 @@
 
 	require_once __DIR__ . '/includes/ShaarliApiClient.php';
 
-	if( isset($_GET['month']) ) {
+	$intervals = array(
+		'12h' => 'Last 12h',
+		'24h' => 'Last 24h',
+		'48h' => 'Last 48h',
+		'1month' => 'Last month',
+		'3month' => 'Last 3 months',
+		'alltime' => 'Alltime',
+	);
 
-		$entries = ShaarliApiClient::getTopMonth();
-	}
-	else {
+	$interval = isset($_GET['interval']) && isset($intervals[$_GET['interval']]) ? $_GET['interval'] : '24h';
 
-		$entries = ShaarliApiClient::getTopToday();
-	}
+	$entries = ShaarliApiClient::callApi('top?interval='.$interval);
 
 	include __DIR__ . '/includes/header.php';
 
 ?>
+<div class="menu">
+	<?php foreach( $intervals as $key => $libelle ): ?>
+	<a class="btn btn-<?php echo ($key == $interval) ? 'primary' : 'default'; ?>" href="./top.php?interval=<?php echo $key; ?>"><?php echo $libelle; ?></a>
+	<?php endforeach; ?>
+</div>
+
 <div id="entries">
 	<?php foreach( $entries as $entry ): ?>
 	<div class="entry">
@@ -22,4 +32,9 @@
 	</div>
 	<?php endforeach; ?>
 </div>
+<script type="text/javascript">
+$(function() {
+	$('#link-top').addClass('btn-primary');
+});
+</script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

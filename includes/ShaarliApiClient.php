@@ -1,20 +1,25 @@
 <?php
 
-define('LOCAL_API', false);
+// Shaarli-api url
+// You can host your own API, see: https://github.com/mknexen/shaarli-api
 define('SHAARLI_API_URL', 'http://nexen.mkdir.fr/shaarli-api/');
 
+/**
+ * ShaarliApiClient
+ */
 class ShaarliApiClient {
 
 	/**
 	 * Call API
 	 * @param string action
 	 */
-	protected function callApi( $action ) {
+	public function callApi( $action ) {
 
-		if( LOCAL_API ) {
+		$localApi = false;
 
-			$action = __DIR__ . '/../api/' . $action;
+		if( $localApi && $action == 'latest' ) {
 
+			$action = __DIR__ . '/../cache/latest.json';
 		}
 		else {
 

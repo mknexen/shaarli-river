@@ -108,7 +108,10 @@ function count_unread() {
 	}
 }
 $(function() {
+
 	river();
+
+	$('#link-river').addClass('btn-primary');
 });
 </script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

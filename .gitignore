@@ -1,4 +1,4 @@
-api/*
+cache/*
 *.log
 *.zip
 *.sh
