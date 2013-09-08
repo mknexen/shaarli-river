@@ -16,6 +16,7 @@
 	$entries = ShaarliApiClient::callApi('top?interval='.$interval);
 
 	include __DIR__ . '/includes/header.php';
+	include __DIR__ . '/includes/menu.php';
 
 ?>
 <div class="menu">

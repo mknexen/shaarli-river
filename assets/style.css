@@ -40,6 +40,7 @@ h1 {
 	background-color: #F5F5F5;
 }
 .entry-shaarli {
+	color: #000;
 	font-weight: bold;
 }
 .entry-title {
@@ -62,5 +63,6 @@ h1 {
 	border-left: 3px solid #0084b4;
 }
 #footer {
+	margin-top: 15px;
 	text-align: center;
 }

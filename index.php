@@ -23,7 +23,7 @@
 				$content = array();
 				$content[] = '<div class="entry">';
 				$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';
-				$content[] = '<span class="entry-shaarli">' . $row->feed->title . '</span> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
+				$content[] = '<a class="entry-shaarli" target="_blank" href="' . @$row->feed->link . '">' . $row->feed->title . '</a> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
 				$content[] = '<div class="entry-content">' . $row->content . '</div>';
 				$content[] = '</div>';
 
@@ -48,8 +48,15 @@
 	}
 
 include __DIR__ . '/includes/header.php';
-
 ?>
+
+<div style="float:right;">
+	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/latest">JSON</a>
+	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/latest?format=rss">RSS</a>
+</div>
+
+<?php include __DIR__ . '/includes/menu.php'; ?>
+
 <div id="entries"></div>
 <script type="text/javascript">
 

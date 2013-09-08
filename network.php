@@ -6,14 +6,15 @@ $feeds = ShaarliApiClient::callApi('feeds');
 shuffle($feeds);
 
 include __DIR__ . '/includes/header.php';
+include __DIR__ . '/includes/menu.php';
 
 ?>
 
 <h3>The Network</h3>
 
 <?php foreach( $feeds as $feed ): ?>
-<?php if( !empty($feed->title)): ?>
-<a class="btn btn-default" target="_blank" href="<?php echo $feed->url; ?>"><?php echo $feed->title; ?></a> 
+<?php if( !empty($feed->link) && !empty($feed->title) ): ?>
+<a class="btn btn-default" target="_blank" href="<?php echo $feed->link; ?>"><?php echo $feed->title; ?></a> 
 <?php endif; ?>
 <?php endforeach; ?>
 
