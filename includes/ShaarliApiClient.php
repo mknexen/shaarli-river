@@ -1,9 +1,5 @@
 <?php
 
-// Shaarli-api url
-// You can host your own API, see: https://github.com/mknexen/shaarli-api
-define('SHAARLI_API_URL', 'http://nexen.mkdir.fr/shaarli-api/');
-
 /**
  * ShaarliApiClient
  */

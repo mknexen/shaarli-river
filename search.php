@@ -1,8 +1,8 @@
 <?php 
 
-if( isset($_GET['q']) && !empty($_GET['q']) ) {
+require_once __DIR__ . '/bootstrap.php';
 
-	require_once __DIR__ . '/includes/ShaarliApiClient.php';
+if( isset($_GET['q']) && !empty($_GET['q']) ) {
 
 	// Sanitize input
 	// Source: http://ulyssesonline.com/2011/10/19/sanitize-your-input-in-php
@@ -22,8 +22,8 @@ include __DIR__ . '/includes/menu.php';
 
 <?php if( isset($entries) ): ?>
 <div style="float:right;">
-	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/search?q=<?php echo $searchterm; ?>">JSON</a>
-	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/search?q=<?php echo $searchterm; ?>&format=rss">RSS</a>
+	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>search?q=<?php echo $searchterm; ?>">JSON</a>
+	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>search?q=<?php echo $searchterm; ?>&format=rss">RSS</a>
 </div>
 <?php endif; ?>
 

@@ -1,22 +1,22 @@
 <?php 
 
-	require_once __DIR__ . '/includes/ShaarliApiClient.php';
+require_once __DIR__ . '/bootstrap.php';
 
-	$intervals = array(
-		'12h' => 'Last 12h',
-		'24h' => 'Last 24h',
-		'48h' => 'Last 48h',
-		'1month' => 'Last month',
-		'3month' => 'Last 3 months',
-		'alltime' => 'Alltime',
-	);
+$intervals = array(
+	'12h' => 'Last 12h',
+	'24h' => 'Last 24h',
+	'48h' => 'Last 48h',
+	'1month' => 'Last month',
+	'3month' => 'Last 3 months',
+	'alltime' => 'Alltime',
+);
 
-	$interval = isset($_GET['interval']) && isset($intervals[$_GET['interval']]) ? $_GET['interval'] : '24h';
+$interval = isset($_GET['interval']) && isset($intervals[$_GET['interval']]) ? $_GET['interval'] : '24h';
 
-	$entries = ShaarliApiClient::callApi('top?interval='.$interval);
+$entries = ShaarliApiClient::callApi('top?interval='.$interval);
 
-	include __DIR__ . '/includes/header.php';
-	include __DIR__ . '/includes/menu.php';
+include __DIR__ . '/includes/header.php';
+include __DIR__ . '/includes/menu.php';
 
 ?>
 <div class="menu">

@@ -1,58 +1,58 @@
 <?php 
 
-	if( isset($_GET['json']) ) {
+require_once __DIR__ . '/bootstrap.php';
 
-		$last_id = (isset($_GET['id']) && (int) $_GET['id'] > 0) ? (int) $_GET['id'] : 0;
+if( isset($_GET['json']) ) {
 
-		require_once __DIR__ . '/includes/ShaarliApiClient.php';
+	$last_id = (isset($_GET['id']) && (int) $_GET['id'] > 0) ? (int) $_GET['id'] : 0;
 
-		$rows = ShaarliApiClient::getLatest();
-		$rows = array_reverse($rows);
+	$rows = ShaarliApiClient::getLatest();
+	$rows = array_reverse($rows);
 
-		$json = array();
+	$json = array();
 
-		$json['id'] = 0;
-		$json['entries'] = array();
+	$json['id'] = 0;
+	$json['entries'] = array();
 
-		foreach( $rows as $row ) {
+	foreach( $rows as $row ) {
 
-			if( $row->id > $last_id ) {
+		if( $row->id > $last_id ) {
 
-				$entry = array();
+			$entry = array();
 
-				$content = array();
-				$content[] = '<div class="entry">';
-				$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';
-				$content[] = '<a class="entry-shaarli" target="_blank" href="' . @$row->feed->link . '">' . $row->feed->title . '</a> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
-				$content[] = '<div class="entry-content">' . $row->content . '</div>';
-				$content[] = '</div>';
+			$content = array();
+			$content[] = '<div class="entry">';
+			$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';
+			$content[] = '<a class="entry-shaarli" target="_blank" href="' . @$row->feed->link . '">' . $row->feed->title . '</a> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
+			$content[] = '<div class="entry-content">' . $row->content . '</div>';
+			$content[] = '</div>';
 
-				$entry['content'] = implode($content);
-				unset($content);
+			$entry['content'] = implode($content);
+			unset($content);
 
-				$json['entries'][] = $entry;
-			}
-
-			if( $row->id > $json['id'] ) { // Max id
-				$json['id'] = $row->id;
-			}
+			$json['entries'][] = $entry;
 		}
 
-		$json['count'] = count($json['entries']);
-
-		header('Cache-Control: no-cache, must-revalidate');
-		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-		header('Content-type: application/json');
-		echo json_encode($json);
-		exit();
+		if( $row->id > $json['id'] ) { // Max id
+			$json['id'] = $row->id;
+		}
 	}
+
+	$json['count'] = count($json['entries']);
+
+	header('Cache-Control: no-cache, must-revalidate');
+	header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+	header('Content-type: application/json');
+	echo json_encode($json);
+	exit();
+}
 
 include __DIR__ . '/includes/header.php';
 ?>
 
 <div style="float:right;">
-	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/latest">JSON</a>
-	<a class="btn btn-default" target="_blank" href="https://nexen.mkdir.fr/shaarli-api/latest?format=rss">RSS</a>
+	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>latest">JSON</a>
+	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>latest?format=rss">RSS</a>
 </div>
 
 <?php include __DIR__ . '/includes/menu.php'; ?>
