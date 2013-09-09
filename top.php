@@ -25,17 +25,36 @@ include __DIR__ . '/includes/menu.php';
 	<?php endforeach; ?>
 </div>
 
-<div id="entries">
+<div class="two-column">
 	<?php foreach( $entries as $entry ): ?>
-	<div class="entry">
+	<div class="entry-link">
 		<div class="entry-counter"><?php echo $entry->count; ?></div>
 		<a class="entry-title" target="_blank" href="<?php echo $entry->permalink; ?>"><?php echo $entry->title; ?></a>
+		<div class="clear"></div>
 	</div>
 	<?php endforeach; ?>
 </div>
+<div id="entries" class="two-column"></div>
+<div class="clear"></div>
 <script type="text/javascript">
 $(function() {
 	$('#link-top').addClass('btn-primary');
+	$('.entry-link').click(function() {
+		$('.entry-link').removeClass('selected');
+		$(this).addClass('selected');
+		var url = $(this).find('a:first').attr('href');
+		$.ajax({ 
+			type: 'GET',
+			url: './discussion.php',
+			data: { 'url': url },
+			async: false,
+			success: function( html ) {
+				$('#entries').html(html);
+		}});
+
+		return false;
+	});
+	$('.entry-title:first').click();
 });
 </script>
 <?php include __DIR__ . '/includes/footer.php'; ?>

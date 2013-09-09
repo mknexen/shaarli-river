@@ -27,6 +27,10 @@ h1 {
 #timer {
 	float: right;
 }
+#footer {
+	margin-top: 15px;
+	text-align: center;
+}
 .menu {
 	margin: 0 0 15px 0;
 }
@@ -62,7 +66,26 @@ h1 {
 .unread {
 	border-left: 3px solid #0084b4;
 }
-#footer {
-	margin-top: 15px;
-	text-align: center;
+.two-column {
+	width: 50%;
+	float: left;
+}
+.entry-link {
+	padding: 5px;
+	margin: 1px 2px 1px 0;
+	cursor: pointer;
+}
+.entry-link a {
+	text-decoration: none;
+}
+.entry-link.selected {
+	margin: 0;
+	border-top: 1px solid #adadad;
+	border-bottom: 1px solid #adadad;
+	border-left: 1px solid #adadad;
+	border-radius: 4px;
+	background-color: #F5F5F5;
+}
+.clear {
+	clear: both;
 }

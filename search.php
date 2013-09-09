@@ -36,13 +36,14 @@ include __DIR__ . '/includes/menu.php';
 <?php if( isset($entries) ): ?>
 <?php if( !empty($entries) ): ?>
 <div id="entries">
-<?php foreach( $entries as $entry ): ?>
-<div class="entry">
-<div class="entry-timestamp"><?php echo date('d/m/Y H:i:s', strtotime($entry->date)); ?></div>
-<a class="entry-shaarli" target="_blank" href="<?php echo $entry->feed->link; ?>"><?php echo $entry->feed->title; ?></a> <a class="entry-title" target="_blank" href="<?php echo $entry->permalink; ?>"><?php echo $entry->title; ?></a>
-<div class="entry-content"><?php echo $entry->content; ?></div>
-</div>
-<?php endforeach; ?>
+<?php
+
+foreach( $entries as $entry ) {
+
+	include __DIR__ . '/includes/entry.php';
+}
+
+?>
 </div>
 <?php else: ?>
 <div>
