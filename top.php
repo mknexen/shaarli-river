@@ -34,7 +34,7 @@ include __DIR__ . '/includes/menu.php';
 	</div>
 	<?php endforeach; ?>
 </div>
-<div id="entries" class="two-column"></div>
+<div id="entries-column" class="two-column"></div>
 <div class="clear"></div>
 <script type="text/javascript">
 $(function() {
@@ -46,10 +46,10 @@ $(function() {
 		$.ajax({ 
 			type: 'GET',
 			url: './discussion.php',
-			data: { 'url': url },
+			data: { 'url': url, 'ajax': 1 },
 			async: false,
 			success: function( html ) {
-				$('#entries').html(html);
+				$('#entries-column').html(html);
 		}});
 
 		return false;
