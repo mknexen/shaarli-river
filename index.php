@@ -75,19 +75,24 @@ function river() {
 			dataType: 'json',
 			success: function( json ) {
 				if( json.count > 0 ) {
-		        	$.each(json.entries, function( id, entry ) {
-		        		var node = $(entry.content);
-		        		if( timer != 1000 ) {
+					if( timer == 1000 ) {
+						$.each(json.entries, function( id, entry ) {
+							$('#entries').prepend(entry.content);
+						});
+					}
+					else {
+			        	$.each(json.entries, function( id, entry ) {
+			        		var node = $(entry.content);
 		        			node.addClass('unread');
 		        			node.hover(function() {
 		        				$(this).removeClass('unread');
 		        				count_unread();
 		        			});
-		        		}
-		        		node.hide();
-		        		$('#entries').prepend(node);
-		        		node.slideDown();
-					});
+			        		node.hide();
+			        		$('#entries').prepend(node);
+			        		node.slideDown();
+						});						
+					}
 					id = json.id;
 					count_unread();
 				}
@@ -116,9 +121,7 @@ function count_unread() {
 	}
 }
 $(function() {
-
 	river();
-
 	$('#link-river').addClass('btn-primary');
 });
 </script>
