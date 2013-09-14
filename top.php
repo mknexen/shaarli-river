@@ -11,44 +11,45 @@ if( isset($_GET['do']) && $_GET['do'] == 'rss' ) {
 
 	$data = ShaarliApiClient::callApi('top?date=' . date('Y-m-d', strtotime('-1 days')));
 
-	if( !empty($data) ) {
+	$feed_entry = new stdClass();
+
+	if( isset($data->entries) && !empty($data->entries) ) {
 
 		$content = array();
 		$content[] = '<ul>';
 
-		foreach( $data->entries as $entry ) {
+		foreach( $data->entries as $link ) {
 
 			$content[] = '<li>[';
-			$content[] = $entry->count;
+			$content[] = $link->count;
 			$content[] = '] <a href="';
-			$content[] = $entry->permalink;
+			$content[] = $link->permalink;
 			$content[] = '">';
-			$content[] = $entry->title;
+			$content[] = $link->title;
 			$content[] = '</a>';
 			$content[] = ' (<a href="';
 			$content[] = SHAARLI_RIVER_URL;
 			$content[] = 'discussion.php?url=';
-			$content[] = urlencode($entry->permalink);
+			$content[] = urlencode($link->permalink);
 			$content[] = '">Discussion</a>)';
 			$content[] = '</li>';
 		}
 
 		$content[] = '</ul>';
 		$content = implode($content);
-
-		$entry = new stdClass();
-		$entry->title = 'Top du ' . date('d/m/Y', strtotime($data->date));
-		$entry->content = $content;
-		$entry->date = $data->date;
-
-		$feed = array(
-			$entry,
-		);
-
-		create_rss( $feed, array(
-			'title' => 'Shaarli River - Les liens les plus partagés'
-		));
+		
+		$feed_entry->title = 'Top du ' . date('d/m/Y', strtotime($data->date));
+		$feed_entry->content = $content;
+		$feed_entry->date = $data->date;
 	}
+
+	$feed = array(
+		$feed_entry,
+	);
+
+	create_rss( $feed, array(
+		'title' => 'Shaarli River - Les liens les plus partagés'
+	));
 
 	exit();
 }
