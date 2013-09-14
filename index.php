@@ -47,6 +47,7 @@ if( isset($_GET['json']) ) {
 	exit();
 }
 
+$header_rss = SHAARLI_API_URL . 'latest?format=rss';
 include __DIR__ . '/includes/header.php';
 ?>
 
