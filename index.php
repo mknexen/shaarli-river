@@ -52,7 +52,7 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <div style="float:right;">
-	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>latest">JSON</a>
+	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>latest?pretty=1">JSON</a>
 	<a class="btn btn-default" target="_blank" href="<?php echo SHAARLI_API_URL; ?>latest?format=rss">RSS</a>
 </div>
 

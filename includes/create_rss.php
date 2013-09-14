@@ -35,7 +35,10 @@ function create_rss( $entries, $config ) {
 			// item
 			$xml->startElement('item');
 			$xml->writeElement('title', $entry->title);
-			$xml->writeElement('link', $entry->permalink);
+
+			if( isset($entry->permalink) )
+				$xml->writeElement('link', $entry->permalink);
+
 			$xml->startElement('description');
 			$xml->writeCData($entry->content);
 			$xml->endElement();
