@@ -11,4 +11,14 @@
 define('SHAARLI_RIVER_URL', 'https://nexen.mkdir.fr/shaarli-river/');
 define('SHAARLI_API_URL', 'https://nexen.mkdir.fr/shaarli-api/');
 
+
+
 require_once __DIR__ . '/includes/ShaarliApiClient.php';
+
+function get_favicon_url( $feed_id ) {
+
+	if( $feed_id > 0 ) {
+
+		return SHAARLI_API_URL . 'getfavicon?id=' . $feed_id;
+	}
+}

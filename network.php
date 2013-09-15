@@ -20,7 +20,7 @@ include __DIR__ . '/includes/header.php'; ?>
 
 <?php foreach( $feeds as $feed ): ?>
 <?php if( !empty($feed->link) && !empty($feed->title) ): ?>
-<a class="btn btn-default" target="_blank" href="<?php echo $feed->link; ?>"><?php echo $feed->title; ?></a> 
+<a class="btn btn-default" target="_blank" href="<?php echo $feed->link; ?>"><img class="favicon" src="<?php echo get_favicon_url($feed->id); ?>" /><?php echo $feed->title; ?></a> 
 <?php endif; ?>
 <?php endforeach; ?>
 

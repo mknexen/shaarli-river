@@ -22,8 +22,10 @@ if( isset($_GET['json']) ) {
 
 			$content = array();
 			$content[] = '<div class="entry">';
-			$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';
-			$content[] = '<a class="entry-shaarli" target="_blank" href="' . @$row->feed->link . '">' . $row->feed->title . '</a> <a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
+			$content[] = '<div class="entry-timestamp">' . date('d/m/Y H:i:s', strtotime($row->date)) . '</div>';			
+			$content[] = '<a class="entry-shaarli" target="_blank" href="' . @$row->feed->link . '">';
+			$content[] = '<img class="favicon" src="' . get_favicon_url($row->feed->id)  .'" />' . $row->feed->title . '</a> ';
+			$content[] = '<a class="entry-title" target="_blank" href="' . $row->permalink . '">' . $row->title . '</a>';
 			$content[] = '<div class="entry-content">' . $row->content . '</div>';
 			$content[] = '</div>';
 

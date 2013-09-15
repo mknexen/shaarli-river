@@ -46,7 +46,7 @@ class ShaarliApiClient {
 	}
 
 	public static function getLatest() {
-		return self::callApi('latest');
+		return self::callApi('latest?limit=30');
 	}
 
 	public static function getTopToday() {

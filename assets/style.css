@@ -34,6 +34,11 @@ h1 {
 .menu {
 	margin: 0 0 15px 0;
 }
+.favicon {
+	height: 16px;
+	width: 16px;
+	margin-right: 2px;
+}
 .entry {
 	padding: 10px;
 	border-right: 1px solid #e8e8e8;
