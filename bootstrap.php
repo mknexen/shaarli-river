@@ -6,13 +6,20 @@
  * @author: nexen (nexen@dukgo.com, nexen@irc.freenode.net#debian, https://nexen.mkdir.fr/shaarli)
  */
 
+/**
+ * Configuration
+ */
+define('SHAARLI_RIVER_URL', 'https://nexen.mkdir.fr/shaarli-river/');
+
 // Shaarli API url
 // You can host your own API, see: https://github.com/mknexen/shaarli-api
-define('SHAARLI_RIVER_URL', 'https://nexen.mkdir.fr/shaarli-river/');
 define('SHAARLI_API_URL', 'https://nexen.mkdir.fr/shaarli-api/');
 
 
 
+/**
+ * DO NOT TOUCH AFTER THIS LINE
+ */
 require_once __DIR__ . '/includes/ShaarliApiClient.php';
 
 function get_favicon_url( $feed_id ) {

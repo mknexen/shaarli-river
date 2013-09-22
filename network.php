@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/bootstrap.php';
 
-$feeds = ShaarliApiClient::callApi('feeds');
-if( empty($feeds) ) die('API return empty content');
+$api = new ShaarliApiClient( SHAARLI_API_URL );
+$feeds = $api->feeds();
 
 shuffle($feeds);
 

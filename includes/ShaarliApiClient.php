@@ -5,21 +5,28 @@
  */
 class ShaarliApiClient {
 
+	public $url = null;
+
+	/** 
+	 * Constructor
+	 */
+	public function __construct( $url ) {
+
+		$this->url = $url;
+	}
+
 	/**
 	 * Call API
 	 * @param string action
+	 * @param array arguments
 	 */
-	public function callApi( $action ) {
+	public function callApi( $action, $arguments = null ) {
 
-		$localApi = false;
+		$url = rtrim($this->url, '/') . '/' . $action;
 
-		if( $localApi && $action == 'latest' ) {
+		if( $arguments != null && !empty($arguments) ) {
 
-			$action = __DIR__ . '/../cache/latest.json';
-		}
-		else {
-
-			$action = SHAARLI_API_URL . $action;
+			$url .= ('?' . http_build_query($arguments) );
 		}
 
 		$options = array(
@@ -32,7 +39,7 @@ class ShaarliApiClient {
 
 		$context = stream_context_create($options);
 
-		$content = @file_get_contents($action, false, $context);
+		$content = @file_get_contents($url, false, $context);
 
 		if( !empty($content) ) {
 
@@ -41,19 +48,53 @@ class ShaarliApiClient {
 			return $content;		
 		}
 		else {
-			die('Unable to call API');
+
+			throw new Exception('Unable to call API');
 		}
 	}
 
-	public static function getLatest() {
-		return self::callApi('latest?limit=30');
+	/**
+	 * feeds
+	 * La liste des shaarlis
+	 */
+	public function feeds( $arguments = null ) {
+		return $this->callApi('feeds', $arguments);
 	}
 
-	public static function getTopToday() {
-		return self::callApi('top?interval=48h');
+	/**
+	 * latest
+	 * Les derniers billets
+	 */
+	public function latest( $arguments = null ) {
+		return $this->callApi('latest', $arguments);
+	}
+	/**
+	 * top
+	 * Les liens les plus partagés
+	 */
+	public function top( $arguments = null ) {
+		return $this->callApi('top', $arguments);
 	}
 
-	public static function getTopMonth() {
-		return self::callApi('top?interval=1month');
+	/**
+	 * search
+	 * Rechercher dans les billets
+	 */
+	public function search( $term, $arguments = array() ) {
+
+		$arguments['q'] = $term;
+
+		return $this->callApi('search', $arguments);
+	}
+
+	/**
+	 * discussion
+	 * Rechercher une discussion
+	 */
+	public function discussion( $url, $arguments = array() ) {
+
+		$arguments['url'] = $url;
+
+		return $this->callApi('discussion', $arguments);
 	}
 }

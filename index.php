@@ -6,7 +6,8 @@ if( isset($_GET['json']) ) {
 
 	$last_id = (isset($_GET['id']) && (int) $_GET['id'] > 0) ? (int) $_GET['id'] : 0;
 
-	$rows = ShaarliApiClient::getLatest();
+	$api = new ShaarliApiClient( SHAARLI_API_URL );
+	$rows = $api->latest();
 	$rows = array_reverse($rows);
 
 	$json = array();

@@ -6,7 +6,8 @@ if( isset($_GET['url']) && !empty($_GET['url']) ) {
 
 	$url = $_GET['url'];
 
-	$entries = ShaarliApiClient::callApi('discussion?url=' . urlencode($url));
+	$api = new ShaarliApiClient( SHAARLI_API_URL );
+	$entries = $api->discussion( $url );
 }
 
 $layout = !isset($_GET['ajax']);

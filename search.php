@@ -12,7 +12,8 @@ if( isset($_GET['q']) && !empty($_GET['q']) ) {
 
 	$searchterm = sanitize($_GET['q']);
 
-	$entries = ShaarliApiClient::callApi('search?q='.$searchterm);
+	$api = new ShaarliApiClient( SHAARLI_API_URL );
+	$entries = $api->search( $searchterm );
 }
 
 include __DIR__ . '/includes/header.php';

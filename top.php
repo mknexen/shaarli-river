@@ -9,7 +9,8 @@ if( isset($_GET['do']) && $_GET['do'] == 'rss' ) {
 
 	require_once __DIR__ . '/includes/create_rss.php';
 
-	$data = ShaarliApiClient::callApi('top?date=' . date('Y-m-d', strtotime('-1 days')));
+	$api = new ShaarliApiClient( SHAARLI_API_URL );
+	$data = $api->top(array('date' => date('Y-m-d', strtotime('-1 days'))));
 
 	$feed_entry = new stdClass();
 
@@ -68,7 +69,8 @@ $intervals = array(
 
 $interval = isset($_GET['interval']) && isset($intervals[$_GET['interval']]) ? $_GET['interval'] : '24h';
 
-$entries = ShaarliApiClient::callApi('top?interval='.$interval);
+$api = new ShaarliApiClient( SHAARLI_API_URL );
+$entries = $api->top(array('interval' => $interval));
 
 $header_rss = './top.php?do=rss';
 include __DIR__ . '/includes/header.php';
