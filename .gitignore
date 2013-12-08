@@ -3,3 +3,4 @@ cache/*
 *.zip
 *.sh
 .idea/
+api/
