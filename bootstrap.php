@@ -9,11 +9,11 @@
 /**
  * Configuration
  */
-define('SHAARLI_RIVER_URL', 'https://nexen.mkdir.fr/shaarli-river/');
+define('SHAARLI_RIVER_URL', 'http://river.hoa.ro/api');
 
 // Shaarli API url
 // You can host your own API, see: https://github.com/mknexen/shaarli-api
-define('SHAARLI_API_URL', 'https://nexen.mkdir.fr/shaarli-api/');
+define('SHAARLI_API_URL', 'https://river.hoa.ro/');
 
 
 
