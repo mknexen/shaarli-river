@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><?php echo $head_title; ?></title>
+<title><?php echo HEAD_TITLE; ?></title>
 <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <meta charset="utf-8" />
 <?php if(isset($header_rss)): ?>
@@ -14,4 +14,4 @@
 <body>
 <div id="page">
 <div id="timer"></div>
-<h1><a href="./"><?php echo $head_title; ?></a></h1>
+<h1><a href="./"><?php echo HEAD_TITLE; ?></a></h1>

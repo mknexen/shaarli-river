@@ -51,7 +51,6 @@ if( isset($_GET['json']) ) {
 }
 
 $header_rss = SHAARLI_API_URL . 'latest?format=rss';
-$head_title = 'Hoaro - Shaarlis';
 include __DIR__ . '/includes/header.php';
 ?>
 
@@ -115,7 +114,7 @@ function river() {
 	setTimeout('river()', 100);
 }
 function count_unread() {
-	var title = "<?php echo $head_title; ?>";
+	var title = "<?php echo HEAD_TITLE; ?>";
 	var unread = $('.unread').size();
 	if( unread > 0 ) {
 		$('title').text('('+unread+') '+title);
