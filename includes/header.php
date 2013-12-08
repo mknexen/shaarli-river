@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hoaro - Shaarlis</title>
+<title><?php echo $head_title; ?></title>
 <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <meta charset="utf-8" />
 <?php if(isset($header_rss)): ?>
@@ -14,4 +14,4 @@
 <body>
 <div id="page">
 <div id="timer"></div>
-<h1><a href="./">Hoaro - Shaarlis</a></h1>
+<h1><a href="./"><?php echo $head_title; ?></a></h1>
