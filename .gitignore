@@ -2,3 +2,6 @@ cache/*
 *.log
 *.zip
 *.sh
+.idea/
+api/
+config.php

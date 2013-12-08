@@ -114,7 +114,7 @@ function river() {
 	setTimeout('river()', 100);
 }
 function count_unread() {
-	var title = 'Shaarli Flux River';
+	var title = "<?php echo HEAD_TITLE; ?>";
 	var unread = $('.unread').size();
 	if( unread > 0 ) {
 		$('title').text('('+unread+') '+title);
