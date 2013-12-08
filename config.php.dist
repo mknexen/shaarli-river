@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Shaarli Flux River
+ *
+ * @version 1.1 beta
+ * @author: Nexen (nexen@irc.freenode.net#debian, https://nexen.mkdir.fr/shaarli)
+ *
+ * Ccontributors:
+ *   ArthurHoaro (https://github.com/ArthurHoaro)
+ */
+
+/**
+ * Configuration
+ */
+define('SHAARLI_RIVER_URL', 'https://nexen.mkdir.fr/shaarli-river/');
+
+// Shaarli API url
+// You can host your own API, see: https://github.com/mknexen/shaarli-api
+define('SHAARLI_API_URL', 'https://nexen.mkdir.fr/shaarli-api/');
+
+// Page title
+define('HEAD_TITLE', 'Shaarli Flux River');
