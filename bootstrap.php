@@ -9,11 +9,11 @@
 /**
  * Configuration
  */
-define('SHAARLI_RIVER_URL', 'http://river.hoa.ro/api');
+define('SHAARLI_RIVER_URL', 'http://river.hoa.ro');
 
 // Shaarli API url
 // You can host your own API, see: https://github.com/mknexen/shaarli-api
-define('SHAARLI_API_URL', 'https://river.hoa.ro/');
+define('SHAARLI_API_URL', 'http://river.hoa.ro/api');
 
 
 
