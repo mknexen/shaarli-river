@@ -13,7 +13,7 @@ if( isset($_GET['q']) && !empty($_GET['q']) ) {
 	$searchterm = sanitize($_GET['q']);
 
 	$api = new ShaarliApiClient( SHAARLI_API_URL );
-	$entries = $api->search( $searchterm );
+	$entries = $api->search( $searchterm, $shaarli_api_extra_args );
 }
 
 include __DIR__ . '/includes/header.php';

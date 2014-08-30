@@ -21,3 +21,9 @@ define('SHAARLI_API_URL', 'https://nexen.mkdir.fr/shaarli-api/');
 
 // Page title
 define('HEAD_TITLE', 'Shaarli Flux River');
+
+// Décommenter pour filtrer la liste des shaarlis par leurs ids (http://nexen.mkdir.fr/shaarli-api/feeds?pretty=1)
+// define('SHAARLI_LIST_FILTER', implode(',', array(
+// 	1, // Sebsauvage
+// 	6 // Horyax
+// )));

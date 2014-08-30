@@ -1,7 +1,4 @@
-cache/*
+config.php
 *.log
 *.zip
 *.sh
-.idea/
-api/
-config.php

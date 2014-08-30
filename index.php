@@ -1,13 +1,13 @@
 <?php 
 
-require_once __DIR__ . '/bootstrap.php';
+require __DIR__.'/bootstrap.php';
 
 if( isset($_GET['json']) ) {
 
 	$last_id = (isset($_GET['id']) && (int) $_GET['id'] > 0) ? (int) $_GET['id'] : 0;
 
 	$api = new ShaarliApiClient( SHAARLI_API_URL );
-	$rows = $api->latest();
+	$rows = $api->latest( $shaarli_api_extra_args );
 	$rows = array_reverse($rows);
 
 	$json = array();

@@ -3,7 +3,7 @@
 require_once __DIR__ . '/bootstrap.php';
 
 $api = new ShaarliApiClient( SHAARLI_API_URL );
-$feeds = $api->feeds();
+$feeds = $api->feeds( $shaarli_api_extra_args );
 
 shuffle($feeds);
 
